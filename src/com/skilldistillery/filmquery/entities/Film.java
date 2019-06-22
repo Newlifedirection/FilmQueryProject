@@ -1,5 +1,7 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.List;
+
 public class Film {
 	private int id;
 	private String title;
@@ -12,12 +14,32 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
+	private String language;
+	private List<Actor> actors;
 	
+	public Film(int id, String title, String description, int releaseYear, String languageId, int rentalDuration,
+			double rentalRate, double length, double replacementCost, String rating, String specialFeatures,
+			List<Actor> actors) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.languageId = languageId;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+		this.actors = actors;
+	}
+
 	public Film() {
 		
 	}
 	
-	public Film(int filmId, String specialFeatures, String desc, short releaseYear2, int langId, int rentDur, double rate, int length2, double repCost, String rating2, String features) {
+	public Film(int filmId, String specialFeatures, String desc, short releaseYear2, String langId, int rentDur, double rate, int length2, double repCost, String rating2, String features) {
 		super();
 		this.specialFeatures = specialFeatures;
 	}
@@ -27,6 +49,11 @@ public class Film {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public Film(String language) {
+		super();
+		this.language = language;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -81,14 +108,16 @@ public class Film {
 	public void setRating(String rating) {
 		this.rating = rating;
 	}
-	@Override
+	
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((specialFeatures == null) ? 0 : specialFeatures.hashCode());
+		result = prime * result + ((language == null) ? 0 : language.hashCode());
 		return result;
 	}
-	@Override
+	
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -97,25 +126,43 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		if (specialFeatures == null) {
-			if (other.specialFeatures != null)
+		if (language == null) {
+			if (other.language != null)
 				return false;
-		} else if (!specialFeatures.equals(other.specialFeatures))
+		} else if (!language.equals(other.language))
 			return false;
 		return true;
 	}
-	@Override
+	
+	
+	
 	public String toString() {
 		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
 				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
 				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialFeatures=" + specialFeatures + "]";
+				+ ", specialFeatures=" + specialFeatures + ", language=" + language + ", actors=" + actors + "]";
 	}
 	public String getSpecialFeatures() {
 		return specialFeatures;
 	}
 	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
+	}
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 	
 }

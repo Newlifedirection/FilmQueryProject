@@ -9,32 +9,98 @@ import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
+
+	DatabaseAccessor db = new DatabaseAccessorObject();
+
+	public static void main(String[] args) {
+		
+		FilmQueryApp app = new FilmQueryApp();
+	    app.launch();
+//	    app.test();
+	}
+
+	private void launch() {
+		Scanner input = new Scanner(System.in);
+		displayUserMenu(input);
+		startUserInterface(input);
+	}
+
+	public void displayUserMenu(Scanner input) {
+		boolean stayInFilmQuery = true;
+		do {
+    System.out.println("  *******************************************************  ");
+    System.out.println("**                                                       **");
+    System.out.println("Welcome to New Generation Films. Please make a selection:");
+    System.out.println("1. Film ID");
+    System.out.println("2. Film by keyword");
+    System.out.println("3. Exit");
+    System.out.println("**                                                       **");
+    System.out.println("  *******************************************************");
+    
+    int choice = input.nextInt();
+    	input.nextLine();
+    	userAction(choice, input);
+   
   
-  DatabaseAccessor db = new DatabaseAccessorObject();
-
-  public static void main(String[] args) {
-    FilmQueryApp app = new FilmQueryApp();
-    app.test();
-//    app.launch();
+	}while(stayInFilmQuery);
+		
+//    System.out.println("");
   }
 
-  private void test() {
-    Film film = db.findFilmById(1);
-//    List<Actor> actors = db.findActorsByFilmId(1);
-//    System.out.println(actors.size());
-    System.out.println(film);
-  }
+	public void userAction(int choice, Scanner input) {
+		
+	
+		switch (choice) {
+		
+		case 1:
+			System.out.println("1");
+			System.out.println("Enter film Id: ");
+			int userChoice = input.nextInt();
+			input.nextLine();
+			Film findFilmById = db.findFilmById(userChoice);
+			if (findFilmById instanceof Film) {
+				System.out.println(findFilmById);
+				
+			}else
+				System.out.println("Invalid Id");
+			
+			break;
+		case 2:
+			System.out.println("2");
+			System.out.println("Enter Keyword: ");
+			String enter = input.nextLine();
+			for (Film result : db.findFilmByKeyword(enter)) {
+				System.out.println(result);
+			}
+			if (db.findFilmByKeyword(enter).size()==0)
+			System.out.println("Sorry, no matches found ");
+			break;
+		case 3:
+			System.out.println("3");
+			FilmQueryApp.Quit();
+			break;
+		default:
+			System.out.println("Good Bye");
+			break;
+		}
+}
+private static void Quit() {
+		
+	}
 
-  private void launch() {
-    Scanner input = new Scanner(System.in);
-    
-    startUserInterface(input);
-    
-    input.close();
-  }
 
-  private void startUserInterface(Scanner input) {
-    
-  }
+	private void test() {
+		Film film = db.findFilmById(1);
+		Actor actor = db.findActorById(1);
+		List<Actor> actors = db.findActorsByFilmId(1);
+		System.out.println(film.getActors().size());
+		System.out.println(actors);
+		System.out.println(actor);
+	}
+
+	private void startUserInterface(Scanner input) {
+		input.close();
+
+	}
 
 }
