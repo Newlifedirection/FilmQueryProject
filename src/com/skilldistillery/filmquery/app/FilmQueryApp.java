@@ -53,16 +53,19 @@ public class FilmQueryApp {
 		switch (choice) {
 		
 		case 1:
-			System.out.println("1");
-			System.out.println("Enter film Id: ");
-			int userChoice = input.nextInt();
-			input.nextLine();
-			Film findFilmById = db.findFilmById(userChoice);
-			if (findFilmById instanceof Film) {
-				System.out.println(findFilmById);
-				
-			}else
+			try {
+				System.out.println("1");
+				System.out.println("Enter film Id: ");
+				int userChoice = input.nextInt();
+				input.nextLine();
+				Film findFilmById = db.findFilmById(userChoice);
+					System.out.println(findFilmById);
+					
+			} catch (Exception e) {
+				input.nextLine();
 				System.out.println("Invalid Id");
+				
+			}
 			
 			break;
 		case 2:
@@ -76,11 +79,11 @@ public class FilmQueryApp {
 			System.out.println("Sorry, no matches found ");
 			break;
 		case 3:
-			System.out.println("3");
-			FilmQueryApp.Quit();
+			System.out.println("Good Bye");
+			System.exit(0);
 			break;
 		default:
-			System.out.println("Good Bye");
+			System.out.println("Try Again");
 			break;
 		}
 }
