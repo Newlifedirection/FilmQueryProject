@@ -10,6 +10,9 @@ public class Actor {
 public int getId() {
 	return id;
 }
+public Actor() {
+	super();
+}
 public void setId(int id) {
 	this.id = id;
 }
@@ -19,6 +22,12 @@ public Actor(int id, String firstName, String lastName, List<Film> films) {
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.films = films;
+}
+public Actor(int id, String firstName, String lastName) {
+	super();
+	this.id = id;
+	this.firstName = firstName;
+	this.lastName = lastName;
 }
 public String getFirstName() {
 	return firstName;

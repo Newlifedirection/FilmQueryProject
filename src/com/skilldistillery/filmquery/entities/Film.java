@@ -13,7 +13,11 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	
-	public Film(String specialFeatures) {
+	public Film() {
+		
+	}
+	
+	public Film(int filmId, String specialFeatures, String desc, short releaseYear2, int langId, int rentDur, double rate, int length2, double repCost, String rating2, String features) {
 		super();
 		this.specialFeatures = specialFeatures;
 	}
@@ -102,7 +106,10 @@ public class Film {
 	}
 	@Override
 	public String toString() {
-		return "Film [specialFeatures=" + specialFeatures + "]";
+		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
+				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
+				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
+				+ ", specialFeatures=" + specialFeatures + "]";
 	}
 	public String getSpecialFeatures() {
 		return specialFeatures;
