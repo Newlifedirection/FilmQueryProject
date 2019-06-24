@@ -59,8 +59,11 @@ public class FilmQueryApp {
 				int userChoice = input.nextInt();
 				input.nextLine();
 				Film findFilmById = db.findFilmById(userChoice);
+				if(findFilmById != null) {
 					System.out.println(findFilmById);
-					
+				}else {
+					System.out.println("No film found"); 
+				}
 			} catch (Exception e) {
 				input.nextLine();
 				System.out.println("Invalid Id");

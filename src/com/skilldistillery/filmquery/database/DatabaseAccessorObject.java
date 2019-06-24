@@ -17,7 +17,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static String url = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 
 	public Film findFilmById(int filmId) {
-		Film film = new Film(); 
+		Film film = null; 
 		String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate,"
 				+ " film.length, film.replacement_cost, film.rating, film.special_features, l.name FROM film JOIN language l ON film.language_id = l.id WHERE film.id = ?";
 		try {
@@ -30,6 +30,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 //			System.out.println(pstmt);
 
 			if (fs.next()) {
+				film = new Film();
 				film.setId(fs.getInt("id"));			
 				film.setTitle(fs.getString("title"));
 				film.setDescription(fs.getString("description"));
